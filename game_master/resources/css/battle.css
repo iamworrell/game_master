@@ -1,0 +1,337 @@
+:root {
+  --primary-color: #8b0000;
+  --secondary-color: rgba(255, 255, 255, 0.08);
+  --text-color: #fff;
+  --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --border-radius: 16px;
+  --highlight-color: #ff4a4a;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+  color: var(--text-color);
+}
+    
+/* Banner & Nav */
+.banner {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+/* NAVIGATION BAR */
+.nav-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #F08080;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-bar a {
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  background-color: #F08080;
+  transition: background-color 0.3s ease;
+}
+
+.nav-bar a:last-child {
+  border-right: none;
+}
+
+.nav-bar a:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+
+    
+/* Main container fills remaining viewport */
+.battle-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 230px);
+  padding: 1rem;
+}
+
+/* Battle-ground (75%) */
+.battle-ground {
+  flex: 3; /* 3 parts */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Bottom panels (25%) */
+.bottom-container {
+  flex: 1; /* 1 part */
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+/* Hand & Details */
+.hand-container {
+  flex: 2;
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+.details-section {
+  flex: 1;
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 1em;
+}
+
+/* Hand section */
+.hand-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.hand-section h2 {
+  margin-bottom: 0.5rem;
+}
+.hand-cards {
+  flex: 1;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.hand-card {
+  flex: 0 0 auto;
+  width: 100px;
+  height: 125px;
+  background: #222;
+  border-radius: 1em;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  margin-right: 3em;
+}
+.hand-card.selected {
+  transform: translateY(-8px);
+}
+.hand-card:hover {
+  transform: translateY(-6px);
+}
+.hand-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  margin-right: 3em;
+}
+
+/* Choose button inside hand container */
+.choose-button {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  text-align: center;
+  background-color: #444;
+  color: white;
+  padding: 0.75em;
+  border-radius: 0.75em;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  cursor: default;
+  margin-bottom: 1em;
+}
+.choose-button.active {
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
+.choose-button.active:hover {
+  background-color: #a30000;
+}
+
+/* Details list */
+.details-section h2 {
+  margin-bottom: 0.5rem;
+}
+.details-section ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Battle cards */
+.battle-card {
+  width: 180px;
+  height: 250px;
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+.health-bar {
+  width: 80%;
+  height: 12px;
+  background: #444;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+}
+.health-fill {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width var(--transition-speed) ease;
+}
+.battle-card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.vs {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* Action buttons */
+.action-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.action-buttons.hidden {
+  display: none !important;
+}
+.action-buttons button {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  padding: 0.75em 2em;
+  border-radius: 0.75em;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color var(--transition-speed), transform var(-transition-speed), opacity var(--transition-speed);
+}
+.action-buttons button.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.action-buttons button:not(.disabled):hover {
+  background-color: #a30000;
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid var(--highlight-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.move {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background var(--transition-speed), transform var(--transition-speed), color var(--transition-speed);
+}
+.move:hover {
+  background: var(--highlight-color);
+  color: #222;
+  transform: scale(1.05);
+}
+.damage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: red;
+  opacity: 0;
+  pointer-events: none;
+}
+.damage.animate {
+  animation: pop 0.8s ease forwards;
+}
+@keyframes pop {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bottom-container {
+    flex-direction: column;
+  }
+  .hand-container, .details-section {
+    flex: none;
+    height: 25vh;
+  }
+  .hand-card {
+    width: 80px;
+    height: 100px;
+  }
+}
